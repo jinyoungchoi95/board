@@ -17,6 +17,23 @@ configurations {
 repositories {
     mavenCentral()
 }
+sourceSets {
+    integration {
+        java.srcDir "$projectDir/src/integration_test/java"
+        resources.srcDir "$projectDir/src/integration_test/resources"
+        compileClasspath += main.output + test.output
+        runtimeClasspath += main.output + test.output
+    }
+}
+configurations {
+    integrationImplementation.extendsFrom testImplementation
+    integrationRuntime.extendsFrom testRuntime
+}
+task integration(type: Test) {
+    testClassesDirs = sourceSets.integration.output.classesDirs
+    classpath = sourceSets.integration.runtimeClasspath
+}
+check.dependsOn integration
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
@@ -27,6 +44,9 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    integrationImplementation sourceSets.main.runtimeClasspath
+    integrationImplementation sourceSets.test.runtimeClasspath
 }
 
 test {
