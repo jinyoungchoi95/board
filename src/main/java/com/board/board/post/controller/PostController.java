@@ -1,10 +1,9 @@
-package com.board.board.controller;
+package com.board.board.post.controller;
 
-import com.board.board.domain.Post.dto.PostTitleResponseDto;
-import com.board.board.service.PostService;
+import com.board.board.post.dto.PostTitleResponseDto;
+import com.board.board.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

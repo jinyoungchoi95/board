@@ -1,6 +1,6 @@
-package com.board.board.domain.Post.dto;
+package com.board.board.post.dto;
 
-import com.board.board.domain.Post.Post;
+import com.board.board.post.domain.Post;
 import lombok.Builder;
 import lombok.Getter;
 

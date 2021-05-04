@@ -1,13 +1,11 @@
-package com.board.board.domain.Post;
+package com.board.board.post.domain;
 
 import com.board.board.common.BaseTimeEntity;
-import com.board.board.domain.Category.Category;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor

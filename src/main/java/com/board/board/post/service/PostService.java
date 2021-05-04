@@ -1,8 +1,7 @@
-package com.board.board.service;
+package com.board.board.post.service;
 
-import com.board.board.domain.Category.CategoryRepository;
-import com.board.board.domain.Post.PostRepository;
-import com.board.board.domain.Post.dto.PostTitleResponseDto;
+import com.board.board.post.domain.PostRepository;
+import com.board.board.post.dto.PostTitleResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostService {
 
     private final PostRepository postRepository;
-    private final CategoryRepository categoryRepository;
 
     private static final int PAGE_POST_COUNT = 15;
 
