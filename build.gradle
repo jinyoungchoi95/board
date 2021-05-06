@@ -39,12 +39,16 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation "org.mapstruct:mapstruct:1.4.2.Final"
+    implementation "org.projectlombok:lombok:1.18.16"
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'mysql:mysql-connector-java'
-    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor "org.mapstruct:mapstruct-processor:1.4.2.Final"
+    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.1.0"
+    annotationProcessor "org.projectlombok:lombok:1.18.16"
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
+    testImplementation 'org.mockito:mockito-junit-jupiter'
     integrationImplementation sourceSets.main.runtimeClasspath
     integrationImplementation sourceSets.test.runtimeClasspath
 }
