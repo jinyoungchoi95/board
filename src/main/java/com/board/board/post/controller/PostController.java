@@ -4,18 +4,25 @@ import com.board.board.post.dto.PostTitleResponseDto;
 import com.board.board.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.Optional;
 
 @RequiredArgsConstructor
-@RestController
+@Controller
 public class PostController {
 
     private final PostService postService;
 
-    @GetMapping("/Post")
-    public Page<PostTitleResponseDto> findPostTitleByPageNum(Integer pageNum) {
+    @GetMapping({"/posts", "/posts/{pageNum}"})
+    public String findPostTitleByPageNum(@PathVariable Optional<Integer> pageNum, Model model) {
+        Integer newPageNum = pageNum.isPresent()? pageNum.get() : 0;
+        Page<PostTitleResponseDto> posts = postService.findPostTitleByPageNum(newPageNum);
+        model.addAttribute("posts", posts);
 
-        return postService.findPostTitleByPageNum(pageNum);
+        return "posts-form";
     }
 }
