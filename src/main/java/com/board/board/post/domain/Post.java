@@ -4,8 +4,10 @@ import com.board.board.common.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
@@ -19,10 +21,14 @@ public class Post extends BaseTimeEntity {
     private String title;
     private String content;
 
+    @CreatedDate
+    private LocalDateTime createdDate;
+
     @Builder
-    public Post(Long id, String title, String content) {
+    public Post(Long id, String title, String content, LocalDateTime createdDate) {
         this.id = id;
         this.title = title;
         this.content = content;
+        this.createdDate = createdDate;
     }
 }
