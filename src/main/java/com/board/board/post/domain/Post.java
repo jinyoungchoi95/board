@@ -1,5 +1,6 @@
 package com.board.board.post.domain;
 
+import com.board.board.category.domain.Category;
 import com.board.board.common.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,14 +22,18 @@ public class Post extends BaseTimeEntity {
     private String title;
     private String content;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Category category;
+
     @CreatedDate
     private LocalDateTime createdDate;
 
     @Builder
-    public Post(Long id, String title, String content, LocalDateTime createdDate) {
+    public Post(Long id, String title, String content, Category category, LocalDateTime createdDate) {
         this.id = id;
         this.title = title;
         this.content = content;
+        this.category = category;
         this.createdDate = createdDate;
     }
 }

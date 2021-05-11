@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
@@ -24,5 +25,13 @@ public class PostController {
         model.addAttribute("posts", posts);
 
         return "posts-form";
+    }
+
+    @GetMapping("/category/posts")
+    public String findPostTitleByPageNumAndCategory(@RequestParam String category, @RequestParam(defaultValue = "0") Integer pageNum, Model model) {
+        Page<PostTitleResponseDto> posts = postService.findPostTitleByPageNumAndCategory(pageNum, category);
+        model.addAttribute("posts", posts);
+
+        return "posts-by-category-form";
     }
 }

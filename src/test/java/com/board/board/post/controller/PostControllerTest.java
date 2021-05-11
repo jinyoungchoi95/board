@@ -42,11 +42,19 @@ class PostControllerTest {
                 .andExpect(view().name("posts-form"));
     }
     @Test
-    @DisplayName(("/posts url요청이 왔을 때 'posts' 뷰 네임이 반환되어야 한다."))
+    @DisplayName("/posts url요청이 왔을 때 'posts' 뷰 네임이 반환되어야 한다.")
     void TestFindPostTitleByNull() throws Exception {
 
         this.mockMvc.perform(get("/posts"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("posts-form"));
+    }
+    @Test
+    @DisplayName("/category/posts url요청이 왔을 때 'posts-by-category' 뷰 네임이 반환되어야 한다.")
+    void testFindPostTitleByPageNumAndCategory() throws Exception {
+
+        this.mockMvc.perform(get("/category/posts?category=category1&pageNum=2"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("posts-by-category-form"));
     }
 }
